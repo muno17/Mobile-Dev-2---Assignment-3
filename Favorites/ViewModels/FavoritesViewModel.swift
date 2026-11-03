@@ -46,7 +46,6 @@ class FavoritesViewModel : ObservableObject{
         bookManager.filteredItems(items: books, searchText: searchText)
     }
     
-    
     func toggleFavoriteBook(book: BookModel) {
         bookManager.toggleFavorite(items: &books, targetItem: book)
     }
