@@ -15,6 +15,7 @@ struct BooksRowView: View {
         HStack {
             Text(book.bookTitle)
                 .font(.title2)
+            Text("-")
             Text(book.bookAuthor)
                 .font(.body)
             
