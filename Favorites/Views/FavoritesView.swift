@@ -32,6 +32,7 @@ struct FavoritesView: View {
                                 Image(systemName: "heart.fill")
                                     .foregroundColor(.red)
                             }
+                            .buttonStyle(.plain) // Keeps the tap target limited to the heart
                         }
                     }
                 }
@@ -57,6 +58,7 @@ struct FavoritesView: View {
                                 Image(systemName: "heart.fill")
                                     .foregroundColor(.red)
                             }
+                            .buttonStyle(.plain) // Keeps the tap target limited to the heart
                         }
                     }
                 }
@@ -82,6 +84,7 @@ struct FavoritesView: View {
                                 Image(systemName: "heart.fill")
                                     .foregroundColor(.red)
                             }
+                            .buttonStyle(.plain) // Keeps the tap target limited to the heart
                         }
                     }
                 }

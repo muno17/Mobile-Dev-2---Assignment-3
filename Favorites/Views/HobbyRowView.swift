@@ -12,11 +12,16 @@ struct HobbyRowView: View {
     @EnvironmentObject private var favorites: FavoritesViewModel
     
     var body: some View {
-        HStack {
+        HStack(alignment: .center, spacing: 12) {
             Text(hobby.hobbyIcon)
                 .font(.title2)
+                .frame(width: 40, height: 40)
+                .background(Color.accentColor.opacity(0.1))
+                .cornerRadius(8)
+            
             Text(hobby.hobbyName)
-                .font(.body)
+                .font(.headline)
+                .fontWeight(.bold)
             
             Spacer()
             
@@ -24,13 +29,19 @@ struct HobbyRowView: View {
                 favorites.toggleFavoriteHobby(hobby: hobby)
             }) {
                 Image(systemName: hobby.isFavorite ? "heart.fill" : "heart")
+                    .font(.title3)
                     .foregroundStyle(hobby.isFavorite ? .red : .gray)
             }
+            .buttonStyle(.plain)
         }
-        .padding(.vertical, 4)
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(12)
     }
 }
 
 #Preview {
-    HobbyRowView(hobby: HobbyModel(id: 1, hobbyName: "Hiking", hobbyIcon: "boot"))
+    HobbyRowView(hobby: HobbyModel(id: 1, hobbyName: "Hiking", hobbyIcon: "🥾"))
+        .environmentObject(FavoritesViewModel())
+        .padding()
 }

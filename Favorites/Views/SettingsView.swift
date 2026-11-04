@@ -12,7 +12,6 @@ struct SettingsView: View {
     @EnvironmentObject private var favoritesViewModel: FavoritesViewModel
     @State private var showResetAlert: Bool = false
     
-    
     var body: some View {
         NavigationStack {
             Form {
@@ -21,18 +20,20 @@ struct SettingsView: View {
                         Label("Dark Mode", systemImage: "moon.fill")
                     }
                 }
+                
                 Section {
-                    Button() {
+                    Button {
                         showResetAlert = true
                     } label: {
                         Label("Clear All Favorites", systemImage: "trash")
+                            .foregroundColor(.red)
                     }
                 }
                 .alert("Are you sure you want to clear all favorites?", isPresented: $showResetAlert) {
                     Button("Clear", role: .destructive) {
                         favoritesViewModel.clearAllFavorites()
                     }
-                    Button("Cancel", role:.cancel) { }
+                    Button("Cancel", role: .cancel) { }
                 } message: {
                     Text("All favorites will be deleted.")
                 }

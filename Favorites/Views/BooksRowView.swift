@@ -12,12 +12,16 @@ struct BooksRowView: View {
     @EnvironmentObject private var favorites: FavoritesViewModel
     
     var body: some View {
-        HStack {
-            Text(book.bookTitle)
-                .font(.title2)
-            Text("-")
-            Text(book.bookAuthor)
-                .font(.body)
+        HStack(alignment: .center, spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(book.bookTitle)
+                    .font(.headline)
+                    .fontWeight(.bold)
+                
+                Text(book.bookAuthor)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
             
             Spacer()
             
@@ -25,13 +29,19 @@ struct BooksRowView: View {
                 favorites.toggleFavoriteBook(book: book)
             }) {
                 Image(systemName: book.isFavorite ? "heart.fill" : "heart")
+                    .font(.title3)
                     .foregroundStyle(book.isFavorite ? .red : .gray)
             }
+            .buttonStyle(.plain)
         }
-        .padding(.vertical, 4)
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(12)
     }
 }
 
 #Preview {
-    BooksRowView(book: BookModel(id: 1, bookTitle: "Test Book", bookAuthor: "Test Author"))
+    BooksRowView(book: BookModel(id: 1, bookTitle: "The Great Gatsby", bookAuthor: "F. Scott Fitzgerald"))
+        .environmentObject(FavoritesViewModel())
+        .padding()
 }
